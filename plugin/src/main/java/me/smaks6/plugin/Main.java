@@ -1,6 +1,6 @@
 
 //
-// Copyright (c) 2021 smaks6
+// Copyright (c) 2021 smaks6 & AW_meister
 //
 
 package me.smaks6.plugin;
@@ -12,8 +12,10 @@ import me.smaks6.plugin.commands.NokautCommand;
 import me.smaks6.plugin.commands.tabcomplete.TabCompleter;
 import me.smaks6.plugin.commands.PickupPlayerCommand;
 import me.smaks6.plugin.pose.Pose;
+import me.smaks6.plugin.service.UpdateChecker;
 import me.smaks6.plugin.service.WorldGuardFlag;
 import me.smaks6.plugin.utilities.PlayerUtilities;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
@@ -50,8 +52,8 @@ public class Main extends JavaPlugin{
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Enabling the plugin nokaut by smaks6 & modified by AW_meister");
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Server version: " + version);
 
-//		int pluginId = 9923;
-//		Metrics metrics = new Metrics(this, pluginId);
+		int pluginId = 9923;
+		Metrics metrics = new Metrics(this, pluginId);
 
 		try {
 			registerEvents();
@@ -87,21 +89,21 @@ public class Main extends JavaPlugin{
 		saveConfig();
 		reloadConfig();
 
-//        new updatechecker(85152).getVersion(version -> {
-//            if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "You have the latest version of the plugin");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Nokaut plugin BY smaks6");
-//            } else {
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "You don't have the latest plugin version");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "\\          /");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " \\        /");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "  \\      /");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "   \\    /");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "    \\  /");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "     \\/");
-//            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Nokaut plugin BY smaks6");
-//            }
-//        });
+        new UpdateChecker(85152).getVersion(version -> {
+            if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "You have the latest version of the plugin");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Nokaut plugin BY smaks6");
+            } else {
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "You don't have the latest plugin version");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "\\          /");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " \\        /");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "  \\      /");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "   \\    /");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "    \\  /");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "     \\/");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Nokaut plugin BY smaks6");
+            }
+        });
 
 	}
 
@@ -145,8 +147,3 @@ public class Main extends JavaPlugin{
 
 
 }
-
-
-
-	
-	
