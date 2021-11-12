@@ -1,0 +1,53 @@
+# Czas nokautu (w sekundach)
+NokautTime: 120
+
+# Jeżeli ta wartość jest ustawiona na "true", gracz po minięciu czasu zginie
+DeathOnEnd: true
+
+# Jeżeli ta wartość jest ustawiona na "true", gracz podczas nokatu otrzyma efekt Blindness
+BlindnessOnNokaut: true
+
+# Jeżeli twój serwer nie jest zbyt dobry, możesz ustawić tę wartość na większą (nie zalecamy ustawienia powyżej 5 - 10)
+NpcTeleportTime: 1
+
+# Czy nick gracza ma być widoczny podczas nokautu?
+showPlayerName: true
+
+# Poziom doświadczenia potrzebny, aby kogoś reanimować
+levelRequired: 1
+
+# Te komendy zostaną wykonane, gdy jakiś gracz zostanie powalony (użyj zmiennych "KnockedPlayer", "Damager")
+commandsOnNokaut:
+  - eco give 100 "Damager"
+
+# Te komendy zostaną wykonane, gdy jakiś gracz zginie po nokaucie (użyj zmiennych "KnockedPlayer", "Damager")
+commandsAfterNokaut:
+  - eco give 500 "Damager"
+
+# Nazwa gracza, gdy jest powalony (gdy showPlayerName jest wyłączone)
+knockoutNPCName: "&c*Nokaut*"
+
+# Jeżeli ta wartość jest ustawiona na "true", OPy otrzymają ostrzeżenie o modyfikacji pluginu
+sendWarning: true
+
+messages:
+  helpNokautMessage: "&8» &cMusisz poprosić innego gracza, by Cię reanimował przed minięciem czasu - inaczej zginiesz..."
+  playerNotFound: "&8» &cNie znaleziono takiego gracza!"
+  noPlayerGiven: "&8» &cPodaj nick gracza!"
+  noPermission: "&8» &cBrak uprawnień!"
+  playerNotKnockedOut: "&8» &cTen gracz nie jest powalony!"
+  deathNowNot: "&8» &cTa komenda jest dostępna tylko, gdy jesteś powalony!"
+  cancelMessage: "&8» &cNie możesz tego zrobić, gdy jesteś powalony!"
+  wakeUpTitle: "&aReanimacja..."
+  knockoutTitle: "&cNokaut!"
+  aliveTitle: "&aŻyjesz!"
+  aliveSubtitle: "&fReanimowano przez %player%"
+  reanimationErrorTitle: "&cBłąd!"
+  reanimationErrorSubtitle: "&fMusisz mieć co najmniej 1 poziom doświadczenia, aby kogoś reanimować!"
+  # %player% - gracz, który powalił, %knocked% - gracz, który jest powalony
+  knockoutBroadcast: "&8» &c%player% powala %knocked%"
+  killerTitle: "&8» &ePowalasz: &6%player% &8«"
+  pickupPlayer: "&8» &aPomyślnie podniesiono gracza!"
+  dropPlayer: "&8» &aPomyślnie upuszczono gracza!"
+  adminCommandNoArgs: "&8» &cMusisz podać argument!"
+  pluginReloaded: "&8» &aPrzeładowano konfigurację pluginu!"
