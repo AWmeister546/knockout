@@ -1,5 +1,6 @@
 package me.smaks6.plugin.listeners;
 
+import me.smaks6.plugin.service.UpdateChecker;
 import me.smaks6.plugin.utilities.PlayerUtilities;
 import me.smaks6.plugin.Main;
 import me.smaks6.plugin.pose.Pose;
@@ -8,6 +9,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,21 +37,21 @@ public class JoinListener implements Listener {
             p.hidePlayer(Main.getInstance(), znokautowany);
         }
 
-//        if(p.isOp()){
-//            new updatechecker(85152).getVersion(version -> {
-//                if(!Main.getInstance().getDescription().getVersion().equalsIgnoreCase(version)){
-//                    p.sendMessage(ChatColor.GOLD + "=======================================");
-//                    p.sendMessage(" ");
-//                    p.sendMessage(ChatColor.RED + "UPDATE!");
-//                    p.sendMessage(ChatColor.RED + "You do not have the current version of the knockout!");
-//                    p.sendMessage(ChatColor.RED + "Please update!");
-//                    p.sendMessage(ChatColor.RED + "Your version: " + ChatColor.GOLD + Main.getInstance().getDescription().getVersion() +
-//                            ChatColor.RED + " Latest Version: " + ChatColor.GOLD + version);
-//                    p.sendMessage(" ");
-//                    p.sendMessage(ChatColor.GOLD + "=======================================");
-//                }
-//            });
-//        }
+        if(p.isOp()){
+            new UpdateChecker(85152).getVersion(version -> {
+                if(!Main.getInstance().getDescription().getVersion().equalsIgnoreCase(version)){
+                    p.sendMessage(ChatColor.GOLD + "=======================================");
+                    p.sendMessage(" ");
+                    p.sendMessage(ChatColor.RED + "UPDATE!");
+                    p.sendMessage(ChatColor.RED + "You do not have the current version of the knockout!");
+                    p.sendMessage(ChatColor.RED + "Please update!");
+                    p.sendMessage(ChatColor.RED + "Your version: " + ChatColor.GOLD + Main.getInstance().getDescription().getVersion() +
+                            ChatColor.RED + " Latest Version: " + ChatColor.GOLD + version);
+                    p.sendMessage(" ");
+                    p.sendMessage(ChatColor.GOLD + "=======================================");
+                }
+            });
+        }
 
         if(p.isOp()) {
            if(Main.getInstance().getConfig().getBoolean("sendWarning")) {
