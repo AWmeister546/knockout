@@ -47,7 +47,6 @@ public class JoinListener implements Listener {
                     p.sendMessage(ChatColor.RED + "Please update!");
                     p.sendMessage(ChatColor.RED + "Your version: " + ChatColor.GOLD + Main.getInstance().getDescription().getVersion() +
                             ChatColor.RED + " Latest Version: " + ChatColor.GOLD + version);
-                    p.sendMessage("");
                     p.sendMessage(" ");
                     p.sendMessage(ChatColor.GOLD + "=======================================");
                 }
