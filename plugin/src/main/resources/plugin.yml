@@ -1,0 +1,33 @@
+name: nokaut
+version: ${version}
+main: me.smaks6.plugin.Main
+authors: [smaks6, AW_meister]
+website: https://www.spigotmc.org/resources/nokaut.85152/
+description: Plugin jest kopia pluginu na nokaut z km
+api-version: 1.16
+loadbefore:
+  - Citiznes
+  - WorldGuard
+
+commands:
+  zginodrazu:
+    aliases: [zo, deathnow, dn]
+    permission: nokaut.deathnow
+  nokaut:
+    aliases: nk
+    permission: nokaut.admin
+  pickuupplayer:
+    aliases: podniesgracza
+  dropplayer:
+    aliases: rzucgracza
+  forcerecive:
+    description: Force recives player
+
+
+permissions:
+  nokaut.deathnow:
+    description: Permissions to the command deathnow and zginodrazu
+    default: true
+  nokaut.admin:
+    description: Permissions to the admin command
+    default: op
