@@ -61,7 +61,7 @@ messages:
   pickupPlayer: "&8» &aSuccessfully picked up player!"
   dropPlayer: "&8» &aSuccessfully dropped player!"
   adminCommandNoArgs: "&8» &cYou must provide an argument!"
-  pluginReloaded: "&8» &aReloaded plugin!"
+  pluginReloaded: "&8» &aReloaded plugin configuration!"
 ```
 
 # ⚖️ Licensing
