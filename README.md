@@ -1,6 +1,7 @@
 # 💀 Knockout
 
 A modified version adding new features and English translation of [@smaks6's](https://github.com/smaks6/) knockout plugin from the "Kwadratowa Masakra" server. You can download original version [here](https://www.spigotmc.org/resources/nokaut-knockout.85152/).
+Graphics created by ZiorberYT.
 
 ![](./nokaut_image.png)
 
