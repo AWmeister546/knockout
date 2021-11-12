@@ -1,33 +1,33 @@
-#How many seconds is the knockout (enter the value in seconds)
+# Enter knockout time (in seconds)
 NokautTime: 120
 
-#if the value is false then when the player ends the countdown it will stand, if the value is true then the player will die
+# If the value is true, the player at the end of the countdown will die.
 DeathOnEnd: true
 
-#if it is true then during the knockout the player gets the blidnes effect
+# If the value is true, then during the knockout the player will get a blindness effect
 BlindnessOnNokaut: true
 
-#If your server is weak, you can set this value higher, but it is not recommended to go below 5-10
+# If your server is weak, you can set this value higher, but it is not recommended to go below 5-10
 NpcTeleportTime: 1
 
-#Show PlayerName above knockout player
+# Show PlayerName above knockout player
 showPlayerName: true
 
-#Level required to revive someone
+# Level required to revive someone
 levelRequired: 1
 
-#This commands has been executed if any player get knocked Out (use "KnockedPlayer" and "Damager" variables)
+# These commands will be executed if any player gets knocked Out (use "KnockedPlayer" and "Damager" variables)
 commandsOnNokaut:
   - eco give 100 "Damager"
 
-#This commands has been executed if any player dies (use "KnockedPlayer" and "Damager" variables)
+# These commands will be executed if any player dies (use "KnockedPlayer" and "Damager" variables)
 commandsAfterNokaut:
   - eco give 500 "Damager"
 
-#Player name when is knocked out (if showPlayerName is disabled)
+# Player name when is knocked out (if showPlayerName is disabled)
 knockoutNPCName: "&c*Knockout*"
 
-#If the value is true, ops will receive a warning message (plugin is modified etc.)
+# If the value is true, ops will receive a warning message (plugin is modified etc.)
 sendWarning: true
 
 messages:
@@ -44,7 +44,7 @@ messages:
   aliveSubtitle: "&fRevived by %player%"
   reanimationErrorTitle: "&cError!"
   reanimationErrorSubtitle: "&fYou must have at least 1 experience level to revive someone!"
-  #%player% - player who knocked out, %knocked% - player who is knocked out
+  # %player% - player who knocked out, %knocked% - player who is knocked out
   knockoutBroadcast: "&8» &c%player% knocked out %knocked%"
   killerTitle: "&8» &eYou knocked down: &6%player% &8«"
   pickupPlayer: "&8» &aSuccessfully picked up player!"
