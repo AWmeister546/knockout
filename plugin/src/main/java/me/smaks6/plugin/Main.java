@@ -52,9 +52,6 @@ public class Main extends JavaPlugin{
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Enabling the plugin nokaut by smaks6 & modified by AW_meister");
 		Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Server version: " + version);
 
-		int pluginId = 9923;
-		Metrics metrics = new Metrics(this, pluginId);
-
 		try {
 			registerEvents();
 		} catch (NoSuchMethodException e) {
