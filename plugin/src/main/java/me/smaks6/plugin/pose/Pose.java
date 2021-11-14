@@ -35,8 +35,6 @@ public class Pose{
             createNPC(p, onlinePlayer);
         }
 
-        hidePlayer(p);
-
         //do commands
 
         Entity damager = NokautUtilities.getLastDamager(p);
@@ -66,8 +64,6 @@ public class Pose{
         p.setFlySpeed(0.1F);
 
         p.setGameMode(GameMode.SURVIVAL);
-
-        showPlayer(p);
 
         // do commands
         Entity damager = NokautUtilities.getLastDamager(p);
