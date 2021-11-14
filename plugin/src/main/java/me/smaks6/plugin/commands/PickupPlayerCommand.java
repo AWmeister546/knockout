@@ -39,9 +39,9 @@ public class PickupPlayerCommand implements CommandExecutor {
             if(e instanceof Player){
                 Player knockedPlayer = (Player) e;
 
-                if(PlayerUtilities.getEnum(knockedPlayer).equals(Nokaut.LAY)) {
-                    PlayerUtilities.setEnum(knockedPlayer, Nokaut.CARRY);
-                    Pose.changegamemode(knockedPlayer, sender, true);
+                if(PlayerUtilities.getState(knockedPlayer).equals(Nokaut.LAY)) {
+                    PlayerUtilities.setState(knockedPlayer, Nokaut.CARRY);
+                    Pose.changeGameMode(knockedPlayer, sender, true);
                     sender.addPassenger(knockedPlayer);
                     knockedPlayer.setInvulnerable(true);
                     if(Main.getInstance().getConfig().getString("messages.pickupPlayer") != null)  {
