@@ -1,5 +1,6 @@
 package me.smaks6.plugin.commands;
 
+import me.smaks6.plugin.utilities.NokautUtilities;
 import me.smaks6.plugin.utilities.PlayerUtilities;
 import me.smaks6.plugin.Main;
 import org.bukkit.ChatColor;
@@ -20,13 +21,12 @@ public class DeathNowCommand implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 			Player p = (Player) sender;
 			if(!PlayerUtilities.isNull(p)) {
-				EntityDamageEvent lastDamageCause = p.getLastDamageCause();
-				if(lastDamageCause instanceof EntityDamageByEntityEvent){
-					EntityDamageByEntityEvent damageByEntityEvent = (EntityDamageByEntityEvent) lastDamageCause;
-					Entity damager = damageByEntityEvent.getDamager();
-					p.damage(300, damager);
-				}else {
+				Entity lastDamager = NokautUtilities.getLastDamager(p);
+
+				if(lastDamager == null) {
 					p.setHealth(0);
+				} else {
+					p.damage(300, lastDamager);
 				}
 
 				PlayerUtilities.unSet(p);
