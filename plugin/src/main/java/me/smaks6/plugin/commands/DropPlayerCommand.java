@@ -31,8 +31,8 @@ public class DropPlayerCommand implements CommandExecutor {
 
         Player player = (Player) sender.getPassengers().get(0);
         sender.getPassengers().clear();
-        PlayerUtilities.setEnum(player, Nokaut.LAY);
-        Pose.changegamemode(player, sender, false);
+        PlayerUtilities.setState(player, Nokaut.LAY);
+        Pose.changeGameMode(player, sender, false);
         player.setInvulnerable(false);
         player.teleport(sender);
         if(Main.getInstance().getConfig().getString("messages.dropPlayer") != null)  {
