@@ -56,6 +56,28 @@ public class Npc {
         sendNPCPacket.sendPackets();
 
         Runnables.npcTimer(knockedPlayer, this);
+
+        try {
+            Object nmsServer = Reflection.getNMSServer();
+
+            Object nmsWorld = Reflection.getNMSWorld();
+
+            GameProfile gameProfile = new GameProfile(UUID.randomUUID(), knockedPlayer.getName());
+            Object entityKnockedPlayer = Reflection.getEntityPlayer(knockedPlayer);
+            GameProfile playerGameProfile = (GameProfile) getProfileMethod.invoke(entityKnockedPlayer);
+            gameProfile.getProperties().putAll(playerGameProfile.getProperties());
+//            gameProfile.getProperties().putAll(((CraftPlayer) knockedPlayer).getHandle().getProfile().getProperties());
+
+            entityPlayer = getEntityPlayer(nmsServer, nmsWorld, gameProfile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        sendNPCPacket = new SendNPCPacket(entityPlayer, toShowPlayer);
+        teleportEntity(-0.1);
+        sendNPCPacket.sendPackets();
+
+        Runnables.npcTimer(knockedPlayer, this);
     }
 
 
@@ -78,6 +100,7 @@ public class Npc {
 
     public void deleteEntity(){
         try {
+            sendNPCPacket.sendDelatePacket();
             sendNPCPacket.sendDelatePacket();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
