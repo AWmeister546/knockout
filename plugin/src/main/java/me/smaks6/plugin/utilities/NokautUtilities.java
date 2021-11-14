@@ -1,5 +1,6 @@
 package me.smaks6.plugin.utilities;
 
+import com.sk89q.commandbook.util.PlayerUtil;
 import me.smaks6.plugin.utilities.Enum.Nokaut;
 import me.smaks6.plugin.Main;
 import me.smaks6.plugin.pose.Pose;
@@ -45,9 +46,9 @@ public class NokautUtilities {
 
                 if(!p.getPassengers().isEmpty()){
                     Player znokautowany = (Player) p.getPassengers().get(0);
-                    PlayerUtilities.setEnum(znokautowany, Nokaut.LAY);
+                    PlayerUtilities.setState(znokautowany, Nokaut.LAY);
                     p.getPassengers().clear();
-                    Pose.changegamemode(znokautowany, p, false);
+                    Pose.changeGameMode(znokautowany, p, false);
                 }
 
                 p.setFireTicks(0);
@@ -55,11 +56,9 @@ public class NokautUtilities {
 
                 Pose.start(p);
 
-                if (Main.getInstance().getConfig().getBoolean("BlindnessOnNokaut")) {
+                if (Main.getInstance().getConfig().getString("BlindnessOnNokaut").equals("true")) {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 1000000, 100));
                 }
-
-                p.removePotionEffect(PotionEffectType.SLOW);
 
                 if (p.getHealth() <= 10.0) {
                     p.setHealth(10.0);
