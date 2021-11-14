@@ -10,9 +10,6 @@ BlindnessOnNokaut: true
 # Jeżeli twój serwer nie jest zbyt dobry, możesz ustawić tę wartość na większą (nie zalecamy ustawienia powyżej 5 - 10)
 NpcTeleportTime: 1
 
-# Czy nick gracza ma być widoczny podczas nokautu?
-showPlayerName: true
-
 # Poziom doświadczenia potrzebny, aby kogoś reanimować
 levelRequired: 1
 
@@ -24,7 +21,7 @@ commandsOnNokaut:
 commandsAfterNokaut:
   - eco give 500 "Damager"
 
-# Nazwa gracza, gdy jest powalony (gdy showPlayerName jest wyłączone)
+# Nazwa gracza, gdy jest powalony
 knockoutNPCName: "&c*Nokaut*"
 
 # Jeżeli ta wartość jest ustawiona na "true", OPy otrzymają ostrzeżenie o modyfikacji pluginu
@@ -36,6 +33,9 @@ messages:
   noPlayerGiven: "&8» &cPodaj nick gracza!"
   noPermission: "&8» &cBrak uprawnień!"
   playerNotKnockedOut: "&8» &cTen gracz nie jest powalony!"
+  playerIsMoving: "&8» &cTen gracz jest podniesiony przez innego gracza!"
+  playerRevived: "&8» &a%player% został reanimowany!"
+  playerKnocked: "&8» &a%player% został powalony!"
   deathNowNot: "&8» &cTa komenda jest dostępna tylko, gdy jesteś powalony!"
   cancelMessage: "&8» &cNie możesz tego zrobić, gdy jesteś powalony!"
   wakeUpTitle: "&aReanimacja..."
