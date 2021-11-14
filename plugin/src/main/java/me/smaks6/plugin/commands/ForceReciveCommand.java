@@ -31,7 +31,7 @@ public class ForceReciveCommand implements CommandExecutor {
 
                 if(target != null) {
                     if(!PlayerUtilities.isNull(target)) {
-                        if(PlayerUtilities.getEnum(target).equals(Nokaut.LAY)) {
+                        if(PlayerUtilities.getState(target).equals(Nokaut.LAY)) {
                             Runnables.revivePlayerCmd(player, target);
                         } else {
                             if(Main.getInstance().getConfig().getString("messages.playerNotKnockedOut") != null)  {
