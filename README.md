@@ -21,9 +21,6 @@ BlindnessOnNokaut: true
 # If your server is weak, you can set this value higher, but it is not recommended to go below 5-10
 NpcTeleportTime: 1
 
-# Show PlayerName above knockout player
-showPlayerName: true
-
 # Level required to revive someone
 levelRequired: 1
 
@@ -47,6 +44,9 @@ messages:
   noPlayerGiven: "&8» &cProvide player's nickname!"
   noPermission: "&8» &cNo permission!"
   playerNotKnockedOut: "&8» &cThis player isn't knocked out!"
+  playerIsMoving: "&8» &cThis player is carried by another player!"
+  playerRevived: "&8» &a%player% has been revived!"
+  playerKnocked: "&8» &a%player% has been knocked out!"
   deathNowNot: "&8» &cThis command is only available during knockout!"
   cancelMessage: "&8» &cYou can't do that when you are knocked out!"
   wakeUpTitle: "&aReanimation in progress..."
