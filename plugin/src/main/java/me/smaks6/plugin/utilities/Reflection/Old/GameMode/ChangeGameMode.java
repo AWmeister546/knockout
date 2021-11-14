@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 
 public class ChangeGameMode {
 
+
     private static Class<?> craftPlayerClass = Reflection.getBukkitClass("entity.CraftPlayer");
     private static Class<?> entityPlayerClass = Reflection.getNMSClass("EntityPlayer");
     private static Method getHandle = Reflection.getMethod(craftPlayerClass, "getHandle");
