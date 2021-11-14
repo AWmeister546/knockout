@@ -40,8 +40,7 @@ public class Npc {
 
             Object nmsWorld = Reflection.getNMSWorld();
 
-            GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.RED + Main.getInstance().getConfig().getString("NokautTitle"));
-
+            GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "");
             Object entityKnockedPlayer = Reflection.getEntityPlayer(knockedPlayer);
             GameProfile playerGameProfile = (GameProfile) getProfileMethod.invoke(entityKnockedPlayer);
             gameProfile.getProperties().putAll(playerGameProfile.getProperties());
