@@ -5,19 +5,19 @@
 
 package me.smaks6.plugin;
 
-import me.smaks6.plugin.commands.DeathNowCommand;
-import me.smaks6.plugin.commands.DropPlayerCommand;
-import me.smaks6.plugin.commands.ForceReciveCommand;
-import me.smaks6.plugin.commands.NokautCommand;
+import me.smaks6.plugin.commands.*;
 import me.smaks6.plugin.commands.tabcomplete.TabCompleter;
-import me.smaks6.plugin.commands.PickupPlayerCommand;
+import me.smaks6.plugin.objects.ArmorStandNokaut;
 import me.smaks6.plugin.pose.Pose;
 import me.smaks6.plugin.service.UpdateChecker;
 import me.smaks6.plugin.service.WorldGuardFlag;
 import me.smaks6.plugin.utilities.PlayerUtilities;
+import me.smaks6.plugin.utilities.Reflection.New.Npc.NpcNew;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -74,6 +74,7 @@ public class Main extends JavaPlugin{
 		new PickupPlayerCommand(this);
 		new DropPlayerCommand(this);
 		new ForceReciveCommand(this);
+		new ForceKnockoutCommand(this);
 
 		new NokautCommand(this);
 		getCommand("nokaut").setTabCompleter(new TabCompleter());
@@ -91,7 +92,8 @@ public class Main extends JavaPlugin{
             	Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "You have the latest version of the plugin");
             	Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Nokaut plugin BY smaks6 & modified by AW_meister");
             } else {
-            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "You don't have the latest plugin version");
+            	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "You don't have the latest version of the plugin");
+				Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Please download the update on plugin's spigot site.");
             	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "\\          /");
             	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + " \\        /");
             	Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "  \\      /");
@@ -124,6 +126,16 @@ public class Main extends JavaPlugin{
 				} else {
 					Pose.stop(player);
 					player.removePotionEffect(PotionEffectType.BLINDNESS);
+				}
+
+				World world = player.getWorld();
+
+				for(Entity entity : world.getEntities()) {
+					if(entity instanceof ArmorStand) {
+						if(ArmorStandNokaut.isNokautArmorStand(entity)) {
+							entity.remove();
+						}
+					}
 				}
 			}
 		}
