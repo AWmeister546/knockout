@@ -12,17 +12,18 @@ import org.spigotmc.event.entity.EntityDismountEvent;
 public class EntityDismountListener implements Listener {
 
     @EventHandler
-    public void enityDismount(EntityDismountEvent event) {
+    public void onEntityDismountEvent(EntityDismountEvent event) {
         if(!(event.getEntity() instanceof Player) )return;
         Player p = (Player) event.getEntity();
         if(!p.isOnline())return;
 
         if(PlayerUtilities.isNull(p))return;
 
-        if(PlayerUtilities.getEnum(p).equals(Nokaut.CARRY)){
+        if(PlayerUtilities.getState(p).equals(Nokaut.CARRY)){
             event.setCancelled(true);
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.cancelMessage")));
+            p.sendMessage(ChatColor.RED + Main.getInstance().getConfig().getString("cancelmessage"));
         }
 
     }
+
 }
