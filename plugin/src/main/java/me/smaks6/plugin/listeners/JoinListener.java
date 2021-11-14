@@ -40,15 +40,17 @@ public class JoinListener implements Listener {
         if(p.isOp()){
             new UpdateChecker(85152).getVersion(version -> {
                 if(!Main.getInstance().getDescription().getVersion().equalsIgnoreCase(version)){
-                    p.sendMessage(ChatColor.GOLD + "=======================================");
-                    p.sendMessage(" ");
-                    p.sendMessage(ChatColor.RED + "UPDATE!");
-                    p.sendMessage(ChatColor.RED + "You do not have the current version of the knockout!");
-                    p.sendMessage(ChatColor.RED + "Please update!");
-                    p.sendMessage(ChatColor.RED + "Your version: " + ChatColor.GOLD + Main.getInstance().getDescription().getVersion() +
-                            ChatColor.RED + " Latest Version: " + ChatColor.GOLD + version);
-                    p.sendMessage(" ");
-                    p.sendMessage(ChatColor.GOLD + "=======================================");
+//                    p.sendMessage(ChatColor.GOLD + "=======================================");
+//                    p.sendMessage(" ");
+//                    p.sendMessage(ChatColor.RED + "UPDATE!");
+//                    p.sendMessage(ChatColor.RED + "You do not have the current version of the knockout!");
+//                    p.sendMessage(ChatColor.RED + "Please update!");
+//                    p.sendMessage(ChatColor.RED + "Your version: " + ChatColor.GOLD + Main.getInstance().getDescription().getVersion() +
+//                            ChatColor.RED + " Latest Version: " + ChatColor.GOLD + version);
+//                    p.sendMessage(" ");
+//                    p.sendMessage(ChatColor.GOLD + "=======================================");
+
+                    p.sendMessage("§8» §cA update of Knockout is available! This server is running version §6" + Main.getInstance().getDescription().getVersion() + ", but latest is §6" + version);
                 }
             });
         }
