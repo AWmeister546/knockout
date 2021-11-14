@@ -122,14 +122,13 @@ public class Runnables {
                             Pose.stop(player);
                         } else {
                             Pose.stop(player);
-                            player.removePotionEffect(PotionEffectType.BLINDNESS);
                         }
                         cancel();
                         return;
                     }
 
                     if (!PlayerUtilities.isNull(player)) {
-                        if (PlayerUtilities.getEnum(player).equals(Nokaut.LAY)) {
+                        if (PlayerUtilities.getState(player).equals(Nokaut.LAY)) {
                             --timeInSeconds;
                         }
                     } else {
@@ -144,88 +143,6 @@ public class Runnables {
         }.runTaskTimer(Main.getInstance(), 0L, 20L);
     }
 
-//    public static void nokautTimer(Player player){
-//        new BukkitRunnable() {
-//            int timeInSeconds = 0;
-//            int timeInMinutes = Main.getInstance().getConfig().getInt("NokautTimeInMin");
-//            String timeToDisplay;
-//            @Override
-//            public void run() {
-//
-//                if(!PlayerUtilities.isNull(player)) {
-//
-//                    if (timeInSeconds <= 9) {
-//                        timeToDisplay = timeInMinutes + ":0" + timeInSeconds;
-//                    } else {
-//                        timeToDisplay = timeInMinutes + ":" + timeInSeconds;
-//                    }
-//
-//                    player.sendTitle(ChatColor.RED + Main.getInstance().getConfig().getString("NokautTitle"), ChatColor.WHITE + timeToDisplay, 1, 20, 1);
-//
-//                    if (PlayerUtilities.isNull(player)) {
-//                        cancel();
-//                        return;
-//                    }
-//
-//                    if ((timeInSeconds <= 0) && (timeInMinutes >= 1)) {
-//                        --timeInMinutes;
-//                        timeInSeconds = 60;
-//                    }
-//
-//                    if ((timeInMinutes <= 0) && (timeInSeconds <= 0)) {
-////                        if (Main.getInstance().getConfig().getBoolean("DeathOnEnd")) {
-////
-////                            EntityDamageEvent lastDamageCause = player.getLastDamageCause();
-////                            if (lastDamageCause instanceof EntityDamageByEntityEvent) {
-////                                EntityDamageByEntityEvent damageByEntityEvent = (EntityDamageByEntityEvent) lastDamageCause;
-////                                Entity damager = damageByEntityEvent.getDamager();
-////                                player.damage(500, damager);
-////                            } else {
-////                                player.setHealth(0);
-////                            }
-////
-////                            Pose.stop(player);
-////                        } else {
-////                            Pose.stop(player);
-////                            player.removePotionEffect(PotionEffectType.BLINDNESS);
-////                        }
-//
-//                        if(Main.getInstance().getConfig().getBoolean("DeathOnEnd") == true) {
-//                            EntityDamageEvent lastDamageCause = player.getLastDamageCause();
-//                            if (lastDamageCause instanceof EntityDamageByEntityEvent) {
-//                                EntityDamageByEntityEvent damageByEntityEvent = (EntityDamageByEntityEvent) lastDamageCause;
-//                                Entity damager = damageByEntityEvent.getDamager();
-//                                player.damage(500, damager);
-//                            } else {
-//                                player.setHealth(0);
-//                            }
-//
-//                            Pose.stop(player);
-//                        } else {
-//                            Pose.stop(player);
-//                            player.removePotionEffect(PotionEffectType.BLINDNESS);
-//                        }
-//
-//                        cancel();
-//                        return;
-//                    }
-//
-//                    if (!PlayerUtilities.isNull(player)) {
-//                        if (PlayerUtilities.getEnum(player).equals(Nokaut.LAY)) {
-//                            --timeInSeconds;
-//                        }
-//                    } else {
-//                        cancel();
-//                        return;
-//                    }
-//                }else{
-//                    cancel();
-//                    return;
-//                }
-//            }
-//        }.runTaskTimer(Main.getInstance(), 0L, 20L);
-//    }
-
 
     public static void npcTimer(Player knockedPlayer, Npc npc){
         new BukkitRunnable() {
@@ -238,11 +155,11 @@ public class Runnables {
                         return;
                     }
 
-                    if (PlayerUtilities.getEnum(knockedPlayer).equals(Nokaut.LAY)) {
+                    if (PlayerUtilities.getState(knockedPlayer).equals(Nokaut.LAY)) {
                         npc.teleportEntity(-0.1);
                     }
 
-                    if (PlayerUtilities.getEnum(knockedPlayer).equals(Nokaut.CARRY)) {
+                    if (PlayerUtilities.getState(knockedPlayer).equals(Nokaut.CARRY)) {
                         npc.teleportEntity(1.0);
                     }
 
