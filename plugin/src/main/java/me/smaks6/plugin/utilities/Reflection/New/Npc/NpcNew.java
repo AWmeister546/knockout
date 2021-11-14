@@ -33,6 +33,7 @@ public class NpcNew {
 
         entityPlayer = spawnNPC();
         teleportNPCRunnable();
+        removeFromTablist();
     }
 
     //ChatColor.RED +
@@ -40,8 +41,7 @@ public class NpcNew {
         Location location = knockedPlayer.getLocation();
         MinecraftServer nmsServer = (MinecraftServer) Reflection.getNMSServer();
         WorldServer nmsWorld = (WorldServer) Reflection.getNMSWorld();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(),
-                (!Main.getInstance().getConfig().getBoolean("showPlayerName") ? ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("knockoutNPCName")) : knockedPlayer.getName() ));
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "");
         gameProfile.getProperties().putAll((((EntityPlayer)Reflection.getEntityPlayer(knockedPlayer)).getProfile().getProperties()));
         EntityPlayer npc = new EntityPlayer(nmsServer, nmsWorld, gameProfile);
         npc.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), 40f);
@@ -97,11 +97,11 @@ public class NpcNew {
                         return;
                     }
 
-                    if (PlayerUtilities.getEnum(knockedPlayer).equals(Nokaut.LAY)) {
+                    if (PlayerUtilities.getState(knockedPlayer).equals(Nokaut.LAY)) {
                         teleportNPc(-0.1);
                     }
 
-                    if (PlayerUtilities.getEnum(knockedPlayer).equals(Nokaut.CARRY)) {
+                    if (PlayerUtilities.getState(knockedPlayer).equals(Nokaut.CARRY)) {
                         teleportNPc(1.0);
                     }
 
@@ -113,8 +113,21 @@ public class NpcNew {
                 }
 
             }
-        }.runTaskTimer(Bukkit.getPluginManager().getPlugin("nokaut"), 3, 3);
+        }.runTaskTimer(Main.getInstance(), 3, 3);
     }
 
+    private void removeFromTablist() {
+        PlayerConnection connection = ((EntityPlayer) Reflection.getEntityPlayer(see)).b;
+        entityPlayer.setPose(EntityPose.d);
+        PacketPlayOutPlayerInfo packetPlayOutPlayerInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, entityPlayer);
+        PacketPlayOutPlayerInfo playOutPlayerInfo = new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.e, entityPlayer);
+        connection.sendPacket(packetPlayOutPlayerInfo);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                connection.sendPacket(playOutPlayerInfo);
+            }
+        }.runTaskLater(Main.getInstance(), 10);
+    }
 
 }
