@@ -20,18 +20,18 @@ public class QuitListener implements Listener {
 
         if(PlayerUtilities.isNull(p))return;
 
-        if(PlayerUtilities.getEnum(p).equals(Nokaut.CARRY)){
-            PlayerUtilities.setEnum(p, Nokaut.LAY);
+        if(PlayerUtilities.getState(p).equals(Nokaut.CARRY)){
+            PlayerUtilities.setState(p, Nokaut.LAY);
             Player vehicle = (Player) p.getVehicle();
             vehicle.getPassengers().clear();
-            Pose.changegamemode(p, null, false);
+            Pose.changeGameMode(p, null, false);
         }
 
         if(!p.getPassengers().isEmpty()){
             Player znokautowany = (Player) p.getPassengers().get(0);
-            PlayerUtilities.setEnum(znokautowany, Nokaut.LAY);
+            PlayerUtilities.setState(znokautowany, Nokaut.LAY);
             p.getPassengers().clear();
-            Pose.changegamemode(znokautowany, p, false);
+            Pose.changeGameMode(znokautowany, p, false);
         }
 
         PlayerUtilities.unSet(p);
