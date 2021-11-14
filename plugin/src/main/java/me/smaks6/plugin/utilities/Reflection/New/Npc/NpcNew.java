@@ -26,12 +26,14 @@ public class NpcNew {
     private Player knockedPlayer;
     private Player see;
     private EntityPlayer entityPlayer;
+    private EntityPlayer tablistPlayer;
 
     public NpcNew(Player knockedPlayer, Player see){
         this.knockedPlayer = knockedPlayer;
         this.see = see;
 
         entityPlayer = spawnNPC();
+        tablistPlayer = spawnFakeTabNpc();
         teleportNPCRunnable();
         removeFromTablist();
     }
@@ -41,7 +43,7 @@ public class NpcNew {
         Location location = knockedPlayer.getLocation();
         MinecraftServer nmsServer = (MinecraftServer) Reflection.getNMSServer();
         WorldServer nmsWorld = (WorldServer) Reflection.getNMSWorld();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "");
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), " ");
         gameProfile.getProperties().putAll((((EntityPlayer)Reflection.getEntityPlayer(knockedPlayer)).getProfile().getProperties()));
         EntityPlayer npc = new EntityPlayer(nmsServer, nmsWorld, gameProfile);
         npc.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), 40f);
@@ -63,6 +65,27 @@ public class NpcNew {
         return npc;
     }
 
+    private EntityPlayer spawnFakeTabNpc() {
+        Location location = knockedPlayer.getLocation();
+        MinecraftServer nmsServer = (MinecraftServer) Reflection.getNMSServer();
+        WorldServer nmsWorld = (WorldServer) Reflection.getNMSWorld();
+        GameProfile fakeProfile = new GameProfile(UUID.randomUUID(), knockedPlayer.getName());
+        EntityPlayer npc2 = new EntityPlayer(nmsServer, nmsWorld, fakeProfile);
+
+        npc2.setLocation(location.getX() + 1, location.getY(), location.getZ(), location.getYaw(), 40f);
+        npc2.setInvisible(true);
+
+        PlayerConnection connection = ((EntityPlayer)Reflection.getEntityPlayer(see)).b;
+
+        DataWatcher watcher = npc2.getDataWatcher();
+
+        connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc2));
+        connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc2));
+        connection.sendPacket(new PacketPlayOutEntityMetadata(npc2.getId(), watcher, false));
+
+        return npc2;
+    }
+
     private void teleportNPc(Double teleportHight){
 
         //entityplayer.x = entityplayer.yaw
@@ -81,6 +104,10 @@ public class NpcNew {
         connection.sendPacket(new PacketPlayOutEntityDestroy(entityPlayer.getId()));
         //e - REMOVE-PLAYER
         connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.e, entityPlayer));
+
+        connection.sendPacket(new PacketPlayOutEntityDestroy(tablistPlayer.getId()));
+        //e - REMOVE-PLAYER
+        connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.e, tablistPlayer));
     }
 
     private void teleportNPCRunnable(){
