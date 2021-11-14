@@ -12,14 +12,14 @@ import org.bukkit.event.player.PlayerKickEvent;
 public class KickPlayerListenear implements Listener {
 
     @EventHandler
-    public void kickListenear(PlayerKickEvent event) {
+    public void onKickEvent(PlayerKickEvent event) {
         Player p = event.getPlayer();
 
         if(PlayerUtilities.isNull(p))return;
 
-        if(PlayerUtilities.getEnum(p).equals(Nokaut.CARRY) && event.getReason().contains("Cannot interact with self!")) {
+        if(PlayerUtilities.getState(p).equals(Nokaut.CARRY) && event.getReason().contains("Cannot interact with self!")) {
             event.setCancelled(true);
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getInstance().getConfig().getString("messages.cancelMessage")));
+            p.sendMessage(ChatColor.RED + Main.getInstance().getConfig().getString("cancelmessage"));
         }
 
     }
